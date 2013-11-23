@@ -1,0 +1,18 @@
+{
+    "name": "snake-canvas",
+    "description": "Snake on Canvas",
+    "version": "0.1.0",
+    "private": true,
+    "author": {
+        "name": "Igor Zoriy",
+        "email": "igor.zoriy@gmail.com",
+        "url": "igorzoriy.com"
+    },
+    "engines": {
+        "node": ">= 0.8.0"
+    },
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-contrib-jshint": "~0.7.2"
+    }
+}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Snake on Canvas</title>
+</head>
+
+<body>
+<script src="js/Area.js"></script>
+<script src="js/Snake.js"></script>
+<script>
+    var snake = new Snake(2, 2);
+    var area = new Area(5, 5);
+    area.addSnake(snake);
+    area.render();
+</script>
+
+</body>
+</html>
