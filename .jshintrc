@@ -13,6 +13,9 @@
     "globalstrict": true,
     "globals": {
         "console": true,
-        "Point": true
+        "document": true,
+        "Point": true,
+        "Area": true,
+        "Snake": true
     }
 }
