@@ -1,8 +1,11 @@
 "use strict";
 
-function Snake(x, y) {
-    this.coordinates = [{x: x, y: y}, {x: x + 1, y: y}, {x: x + 2, y: y}];
+function Snake(x, y, length) {
     this.direction = 'down';
+    this.coordinates = [];
+    for (var i = 0; i < length; i++) {
+        this.coordinates.push({x: x, y: y});
+    }
 }
 
 Snake.prototype = {
