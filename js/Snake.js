@@ -2,7 +2,7 @@
 
 function Snake(x, y) {
     this.coordinates = [{x: x, y: y}, {x: x + 1, y: y}, {x: x + 2, y: y}];
-    this.direction = 'up';
+    this.direction = 'down';
 }
 
 Snake.prototype.setDirection = function (direction) {
@@ -25,10 +25,9 @@ Snake.prototype.move = function () {
             first.x--;
             break;
         case 'up':
-        default:
             first.y--;
             break;
     }
     this.coordinates.unshift(first);
     this.coordinates.pop();
-}
+};
