@@ -5,14 +5,16 @@ function Snake(x, y) {
     this.direction = 'down';
 }
 
-Snake.prototype.setDirection = function (direction) {
-    this.direction = direction;
+Snake.prototype = {
+    get head() {
+        return this.coordinates[0];
+    }
 };
 
 Snake.prototype.move = function () {
     var first = {
-        x: this.coordinates[0].x,
-        y: this.coordinates[0].y
+        x: this.head.x,
+        y: this.head.y
     };
     switch (this.direction) {
         case 'right':
@@ -30,4 +32,6 @@ Snake.prototype.move = function () {
     }
     this.coordinates.unshift(first);
     this.coordinates.pop();
+
+    return this;
 };

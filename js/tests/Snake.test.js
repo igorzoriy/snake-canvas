@@ -1,9 +1,14 @@
 "use strict";
 
-var snake = new Snake(0, 0);
+test("Head test", function () {
+    var snake = new Snake(0, 0);
+    deepEqual(snake.head, {x: 0, y: 0}, 'Check initial position.');
+    snake = new Snake(4, 8);
+    deepEqual(snake.head, {x: 4, y: 8}, 'Check initial position.');
+});
 
 test("Move test", function () {
-    deepEqual(snake.coordinates[0], {x: 0, y: 0}, 'Incorrect initial position.');
-    snake.move();
-    deepEqual(snake.coordinates[0], {x: 0, y: 1}, 'The snake should move down by default.');
+    var snake = new Snake(0, 0);
+    snake.move().move().move();
+    deepEqual(snake.head, {x: 0, y: 3}, 'Check moving with default direction.');
 });
