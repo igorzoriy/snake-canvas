@@ -7,8 +7,8 @@ function Area(width, height) {
     this.snake = null;
 }
 
-Area.prototype.addSnake = function (snake) {
-    this.snake = snake;
+Area.prototype.isPointInArea = function (point) {
+    return point.x >= 0 && point.x < this.width && point.y >= 0 && point.y < this.height;
 };
 
 Area.prototype.render = function () {

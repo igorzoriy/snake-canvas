@@ -4,7 +4,7 @@ function Snake(x, y, length) {
     this.direction = 'down';
     this.coordinates = [];
     for (var i = 0; i < length; i++) {
-        this.coordinates.push({x: x, y: y});
+        this.coordinates.push(new Point(x, y));
     }
 }
 
@@ -15,10 +15,8 @@ Snake.prototype = {
 };
 
 Snake.prototype.move = function () {
-    var first = {
-        x: this.head.x,
-        y: this.head.y
-    };
+    var first = new Point(this.head.x, this.head.y);
+
     switch (this.direction) {
         case 'right':
             first.x++;

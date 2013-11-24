@@ -12,6 +12,7 @@
     "browser": true,
     "globalstrict": true,
     "globals": {
-        "console": true
+        "console": true,
+        "Point": true
     }
 }
