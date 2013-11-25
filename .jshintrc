@@ -16,6 +16,7 @@
         "document": true,
         "Point": true,
         "Area": true,
-        "Snake": true
+        "Snake": true,
+        "Canvas": true
     }
 }

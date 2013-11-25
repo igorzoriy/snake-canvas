@@ -5,11 +5,11 @@ var cancelRequestAnimFrame = window.cancelRequestAnimationFrame || window.mozCan
 
 function App() {
     this.requestFrameId = null;
-    this.frameDelay = 2000;
+    this.frameDelay = 1000;
     this.lastFrameTs = 0;
 
     this.snake = new Snake(0, 0, 3);
-    this.area = new Area(5, 5);
+    this.area = new Area(8, 8);
     this.area.snake = this.snake;
 
     document.body.addEventListener('keydown', this.onKeyDown.bind(this));
