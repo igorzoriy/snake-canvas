@@ -1,7 +1,10 @@
 "use strict";
 
 test('Point in area test', function () {
-    var area = new Area(2, 2);
+    var area = new Area('area', {
+        width: 2,
+        height: 2
+    });
 
     ok(area.isPointInArea(new Point(0, 0)), 'Check top-left vertex.');
     ok(area.isPointInArea(new Point(1, 0)), 'Check top-right vertex.');

@@ -3,13 +3,14 @@
 var requestAnimFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || window.oRequestAnimationFrame;
 var cancelRequestAnimFrame = window.cancelRequestAnimationFrame || window.mozCancelRequestAnimationFrame || window.webkitCancelRequestAnimationFrame || window.msCancelRequestAnimationFrame || window.oCancelRequestAnimationFrame || window.CancelAnimationFrame || window.mozCancelAnimationFrame || window.webkitCancelAnimationFrame || window.msCancelAnimationFrame || window.oCancelAnimationFrame;
 
-function App() {
+function App(config) {
     this.requestFrameId = null;
-    this.frameDelay = 1000;
     this.lastFrameTs = 0;
 
-    this.snake = new Snake(0, 0, 3);
-    this.area = new Area(8, 8);
+    this.animationStep = config.animationStep || 1000;
+
+    this.snake = new Snake(config.snake.x, config.snake.y, config.snake.length);
+    this.area = new Area(config.canvasId, config.area);
     this.area.snake = this.snake;
 
     document.body.addEventListener('keydown', this.onKeyDown.bind(this));
@@ -35,7 +36,7 @@ App.prototype.onKeyDown = function (e) {
 
 App.prototype.frame = function () {
     var currentTs = new Date().getTime();
-    if (this.lastFrameTs + this.frameDelay <= currentTs) {
+    if (this.lastFrameTs + this.animationStep <= currentTs) {
         this.lastFrameTs = currentTs;
         this.snake.move();
         this.area.render();

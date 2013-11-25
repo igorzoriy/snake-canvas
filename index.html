@@ -14,7 +14,23 @@
 <script src="js/App.js"></script>
 
 <script>
-    var a = new App();
+    var a = new App({
+        animationStep: 800,
+        canvasId: 'area',
+        area: {
+            width: 10,
+            height: 6,
+            cellSize: 40,
+            cellPadding: 10,
+            emptyCellColor: '#ffdd88',
+            cellWithSnakeColor: '#f716d5'
+        },
+        snake: {
+            x: 5,
+            y: 3,
+            length: 3
+        }
+    });
 </script>
 </body>
 </html>
