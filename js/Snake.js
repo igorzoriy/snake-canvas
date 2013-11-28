@@ -11,28 +11,32 @@ function Snake(x, y, length) {
 Snake.prototype = {
     get head() {
         return this.coordinates[0];
+    },
+
+    get nextHead() {
+        var x = this.head.x,
+            y = this.head.y;
+        switch (this.direction) {
+            case 'right':
+                x++;
+                break;
+            case 'down':
+                y++;
+                break;
+            case 'left':
+                x--;
+                break;
+            case 'up':
+                y--;
+                break;
+        }
+        return new Point(x, y);
+    },
+
+    move: function() {
+        var next = this.nextHead;
+        this.coordinates.unshift(next);
+        this.coordinates.pop();
+        return this;
     }
-};
-
-Snake.prototype.move = function () {
-    var first = new Point(this.head.x, this.head.y);
-
-    switch (this.direction) {
-        case 'right':
-            first.x++;
-            break;
-        case 'down':
-            first.y++;
-            break;
-        case 'left':
-            first.x--;
-            break;
-        case 'up':
-            first.y--;
-            break;
-    }
-    this.coordinates.unshift(first);
-    this.coordinates.pop();
-
-    return this;
 };
