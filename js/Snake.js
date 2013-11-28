@@ -19,24 +19,27 @@ Snake.prototype = {
         return this.coordinates[0];
     },
 
+    get tail() {
+        return this.coordinates[this.length - 1];
+    },
+
     get nextHead() {
-        var x = this.head.x,
-            y = this.head.y;
+        var next = this.head.clone();
         switch (this.direction) {
             case 'right':
-                x++;
+                next.x++;
                 break;
             case 'down':
-                y++;
+                next.y++;
                 break;
             case 'left':
-                x--;
+                next.x--;
                 break;
             case 'up':
-                y--;
+                next.y--;
                 break;
         }
-        return new Point(x, y);
+        return next;
     },
 
     get color() {
@@ -62,7 +65,16 @@ Snake.prototype = {
     },
 
     eat: function () {
-        this.coordinates.push(this.coordinates[this.length]);
+        this.coordinates.push(this.tail.clone());
         return this;
+    },
+
+    isPointInSnake: function (point) {
+        for (var i = 0; i < this.length; i++) {
+            if (point.equal(this.coordinates[i])) {
+                return true;
+            }
+        }
+        return false;
     }
 };

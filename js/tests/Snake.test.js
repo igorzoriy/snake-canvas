@@ -68,5 +68,5 @@ test("Eat test", function () {
 
     snake.eat().eat();
     equal(snake.length, length + 2, "Check length after eat.");
-    deepEqual(snake.coordinates[snake.length], snake.coordinates[snake.length - 1], "Check last coordinate after eat.");
+    deepEqual(snake.tail, snake.coordinates[snake.length - 2], "Check last coordinate after eat.");
 });

@@ -51,6 +51,9 @@ App.prototype.step = function () {
         this.snake.eat();
         this.snake.move();
         this.area.addFruit();
+    } else if (!this.area.isPointInArea(next) || this.snake.isPointInSnake(next)) {
+        this.snake.death();
+        this.stop();
     } else {
         this.snake.move();
     }
