@@ -8,15 +8,35 @@ function Area(canvasId, config) {
     this.cellBorderColor = config.cellBorderColor || '#000000';
     this.emptyCellColor = config.emptyCellColor || '#FFFFFF';
     this.cellWithSnakeColor = config.cellWithSnakeColor || '#FF0000';
+    this.cellWithFruitColor = config.cellWithFruitColor || '#00FF00';
 
     var canvasWidth = this.width * (this.cellSize + this.cellPadding) + this.cellPadding;
     var canvasHeight = this.height * (this.cellSize + this.cellPadding) + this.cellPadding;
     this.canvas = new Canvas(canvasId, canvasWidth, canvasHeight);
     this.snake = null;
+    this.fruit = null;
 }
 
 Area.prototype.isPointInArea = function (point) {
     return point.x >= 0 && point.x < this.width && point.y >= 0 && point.y < this.height;
+};
+
+Area.prototype.addFruit = function () {
+    var x, y, i, isEmptyCell;
+    do {
+        isEmptyCell = true;
+        x = Math.floor(Math.random() * this.width);
+        y = Math.floor(Math.random() * this.height);
+        if (this.snake) {
+            for (i = 0; i < this.snake.coordinates.length; i++) {
+                if (x === this.snake.coordinates[i].x && y === this.snake.coordinates[i].y) {
+                    isEmptyCell = false;
+                    break;
+                }
+            }
+        }
+    } while (!isEmptyCell);
+    this.fruit = new Point(x, y);
 };
 
 Area.prototype.render = function () {
@@ -31,6 +51,12 @@ Area.prototype.render = function () {
             }
             filled[x][y] = 1;
         }
+    }
+    if (this.fruit) {
+        if (!filled[this.fruit.x]) {
+            filled[this.fruit.x] = {};
+        }
+        filled[this.fruit.x][this.fruit.y] = 2;
     }
 
     this.canvas.clear();
@@ -47,6 +73,8 @@ Area.prototype.render = function () {
             color = this.emptyCellColor;
             if (filled[wi] && filled[wi][hi] === 1) {
                 color = this.cellWithSnakeColor;
+            } else if (filled[wi] && filled[wi][hi] === 2) {
+                color = this.cellWithFruitColor;
             }
             this.canvas.drawRectangle(leftTop, rightBottom, 5, this.cellBorderColor, color);
         }
