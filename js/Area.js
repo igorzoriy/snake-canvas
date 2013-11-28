@@ -27,7 +27,7 @@ Area.prototype.addFruit = function () {
         x = Math.floor(Math.random() * this.width);
         y = Math.floor(Math.random() * this.height);
         if (this.snake) {
-            for (i = 0; i < this.snake.coordinates.length; i++) {
+            for (i = 0; i < this.snake.length; i++) {
                 if (x === this.snake.coordinates[i].x && y === this.snake.coordinates[i].y) {
                     isEmptyCell = false;
                     break;
@@ -42,7 +42,7 @@ Area.prototype.render = function () {
     var hi, wi, leftTop, rightBottom, color, filled = {};
 
     if (this.snake) {
-        for (hi = 0; hi < this.snake.coordinates.length; hi++) {
+        for (hi = 0; hi < this.snake.length; hi++) {
             var x = this.snake.coordinates[hi].x;
             var y = this.snake.coordinates[hi].y;
             if (!filled[x]) {

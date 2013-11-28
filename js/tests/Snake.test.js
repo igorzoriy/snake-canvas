@@ -59,5 +59,14 @@ test("Death test", function () {
     var snake = new Snake({});
     equal(snake.alive, true, "Check alive.");
     snake.death();
-    deepEqual(snake.alive, false, "Check death.");
+    equal(snake.alive, false, "Check death.");
+});
+
+test("Eat test", function () {
+    var snake = new Snake({});
+    var length = snake.length;
+
+    snake.eat().eat();
+    equal(snake.length, length + 2, "Check length after eat.");
+    deepEqual(snake.coordinates[snake.length], snake.coordinates[snake.length - 1], "Check last coordinate after eat.");
 });

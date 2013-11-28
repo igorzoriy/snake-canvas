@@ -43,6 +43,10 @@ Snake.prototype = {
         return this.alive ? this.aliveColor : this.deathColor;
     },
 
+    get length() {
+        return this.coordinates.length;
+    },
+
     move: function () {
         if (this.alive) {
             var next = this.nextHead;
@@ -54,6 +58,11 @@ Snake.prototype = {
 
     death: function () {
         this.alive = false;
+        return this;
+    },
+
+    eat: function () {
+        this.coordinates.push(this.coordinates[this.length]);
         return this;
     }
 };

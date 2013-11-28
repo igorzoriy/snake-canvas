@@ -39,11 +39,25 @@ App.prototype.frame = function () {
     var currentTs = new Date().getTime();
     if (this.lastFrameTs + this.animationStep <= currentTs) {
         this.lastFrameTs = currentTs;
-        this.snake.move();
-        this.area.render();
+        this.step();
     }
     this.requestFrameId = requestAnimFrame(this.frame.bind(this));
 };
+
+App.prototype.step = function () {
+    var next = this.snake.nextHead,
+        fruit = this.area.fruit;
+    if (next.x === fruit.x && next.y === fruit.y) {
+        this.snake.eat();
+        this.snake.move();
+        this.area.addFruit();
+    } else {
+        this.snake.move();
+    }
+
+    this.area.render();
+};
+
 
 App.prototype.start = function () {
     this.frame();
