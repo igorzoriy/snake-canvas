@@ -7,7 +7,6 @@ function Area(canvasId, config) {
     this.height = config.height || 5;
     this.cellBorderColor = config.cellBorderColor || '#000000';
     this.emptyCellColor = config.emptyCellColor || '#FFFFFF';
-    this.cellWithSnakeColor = config.cellWithSnakeColor || '#FF0000';
     this.cellWithFruitColor = config.cellWithFruitColor || '#00FF00';
 
     var canvasWidth = this.width * (this.cellSize + this.cellPadding) + this.cellPadding;
@@ -72,7 +71,7 @@ Area.prototype.render = function () {
             );
             color = this.emptyCellColor;
             if (filled[wi] && filled[wi][hi] === 1) {
-                color = this.cellWithSnakeColor;
+                color = this.snake.color;
             } else if (filled[wi] && filled[wi][hi] === 2) {
                 color = this.cellWithFruitColor;
             }

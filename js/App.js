@@ -9,7 +9,7 @@ function App(config) {
 
     this.animationStep = config.animationStep || 1000;
 
-    this.snake = new Snake(config.snake.x, config.snake.y, config.snake.length);
+    this.snake = new Snake(config.snake);
     this.area = new Area(config.canvasId, config.area);
     this.area.snake = this.snake;
     this.area.addFruit();

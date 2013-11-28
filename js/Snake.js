@@ -1,11 +1,17 @@
 "use strict";
 
-function Snake(x, y, length) {
+function Snake(config) {
     this.direction = 'down';
+    var x = config.x || 0,
+        y = config.y || 0,
+        length = config.length || 3;
     this.coordinates = [];
     for (var i = 0; i < length; i++) {
         this.coordinates.push(new Point(x, y));
     }
+    this.alive = true;
+    this.aliveColor = config.aliveColor || '#FF0000';
+    this.deathColor = config.deathColor || '#0000FF';
 }
 
 Snake.prototype = {
@@ -33,10 +39,20 @@ Snake.prototype = {
         return new Point(x, y);
     },
 
-    move: function() {
-        var next = this.nextHead;
-        this.coordinates.unshift(next);
-        this.coordinates.pop();
+    get color() {
+        return this.alive ? this.aliveColor : this.deathColor;
+    },
+
+    move: function () {
+        if (this.alive) {
+            var next = this.nextHead;
+            this.coordinates.unshift(next);
+            this.coordinates.pop();
+        }
         return this;
+    },
+
+    death: function () {
+        this.alive = false;
     }
 };
