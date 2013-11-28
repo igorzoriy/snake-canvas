@@ -54,5 +54,6 @@ Snake.prototype = {
 
     death: function () {
         this.alive = false;
+        return this;
     }
 };
