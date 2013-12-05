@@ -5,6 +5,10 @@
 </head>
 
 <body>
+<h1>Snake on Canvas</h1>
+<div>Use arrow buttons for control the snake.</div>
+<br>
+<div id="score"></div>
 <canvas id="area">Unsupported browser.</canvas>
 
 <script src="js/Point.js"></script>
@@ -14,7 +18,7 @@
 <script src="js/App.js"></script>
 
 <script>
-    var a = new App({
+    var app = new App({
         animationStep: 600,
         canvasId: 'area',
         area: {
@@ -22,15 +26,15 @@
             height: 10,
             cellSize: 40,
             cellPadding: 10,
-            emptyCellColor: '#ffdd88',
-            cellWithFruitColor: '#F91000'
+            emptyCellColor: '#FFDD88',
+            cellWithFruitColor: '#E08000'
         },
         snake: {
             x: 5,
             y: 3,
             length: 3,
-            aliveColor: '#f716d5',
-            deathColor: '#d5f716'
+            aliveColor: '#40FF20',
+            deathColor: '#F91000'
         }
     });
 </script>

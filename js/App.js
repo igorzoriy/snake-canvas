@@ -9,6 +9,7 @@ function App(config) {
 
     this.animationStep = config.animationStep || 1000;
 
+    this.score = 0;
     this.snake = new Snake(config.snake);
     this.area = new Area(config.canvasId, config.area);
     this.area.snake = this.snake;
@@ -49,6 +50,7 @@ App.prototype.step = function () {
         fruit = this.area.fruit;
     if (next.x === fruit.x && next.y === fruit.y) {
         this.snake.eat();
+        this.score++;
         this.snake.move();
         this.area.addFruit();
     } else if (!this.area.isPointInArea(next) || this.snake.isPointInSnake(next)) {
@@ -58,7 +60,7 @@ App.prototype.step = function () {
         this.snake.move();
     }
 
-    this.area.render();
+    this.render();
 };
 
 
@@ -68,4 +70,11 @@ App.prototype.start = function () {
 
 App.prototype.stop = function () {
     cancelRequestAnimFrame(this.requestFrameId);
+};
+
+App.prototype.render = function () {
+    document.getElementById('score').innerHTML = 'Your score: ' + this.score;
+    if (this.area) {
+        this.area.render();
+    }
 };

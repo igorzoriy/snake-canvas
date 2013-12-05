@@ -1,4 +1,1 @@
-- Add fruit into area and code interaction with snake
-- Add death for snake
-- Add score
 - Readme
